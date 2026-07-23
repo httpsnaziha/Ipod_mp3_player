@@ -1,3 +1,4 @@
+<img width="449" height="212" alt="Capture d’écran 2026-07-23 153506" src="https://github.com/user-attachments/assets/6b39938c-af9c-4e4b-be64-1d4c66cbcd66" />
 <h2 align="center"><u>Ipod-mp3-player</u></h2>
 
 <p align="center">
@@ -5,12 +6,14 @@
     <img src="https://img.shields.io/badge/Author-NAZiha-magenta?style=flat-square">
     <img src="https://img.shields.io/badge/Written%20In-Python-blue?style=flat-square">
 </p>
+<img width="449" height="212" alt="Capture d’écran 2026-07-23 153506" src="https://github.com/user-attachments/assets/ec6baeb2-6cba-48bc-9e93-f1ce7b6f6548" />
 
-### [+] Description
 # 🎧 iPod Music Player
 
 A retro-style desktop MP3 player built with **Python**, **Tkinter**, and **Pygame**, inspired by the classic iPod click-wheel interface.
-<img width="449" height="212" alt="Capture d’écran 2026-07-23 152127" src="https://github.com/user-attachments/assets/f504590c-a644-47da-80f5-c0bf69a1ac3e" />
+
+<img width="449" height="212" alt="Capture d’écran" src="https://github.com/user-attachments/assets/1abd32eb-167a-402f-8135-5ad78b146436" />
+
 ## Features
 
 - 🎵 **Local MP3 playback** — load an entire folder of `.mp3` files and play them back-to-back
@@ -71,6 +74,7 @@ Ipod_mp3_palyer/
 - The player only scans the top level of the folder you choose for `.mp3` files — subfolders are not scanned recursively.
 - The music queue is kept in memory only; nothing is saved between sessions, so you'll need to re-import your folder each time you launch the app.
 - The "settings" screen is currently just a placeholder with no functional options yet.
+
 
 
 
