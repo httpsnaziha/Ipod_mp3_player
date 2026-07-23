@@ -1,4 +1,4 @@
-<img width="449" height="212" alt="Capture d’écran 2026-07-23 153506" src="https://github.com/user-attachments/assets/6b39938c-af9c-4e4b-be64-1d4c66cbcd66" />
+
 <h2 align="center"><u>Ipod-mp3-player</u></h2>
 
 <p align="center">
