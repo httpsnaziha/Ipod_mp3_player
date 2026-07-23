@@ -15,7 +15,7 @@ window.title("iPod Music Player")
 window.geometry("600x250")
 window.resizable(False, False)
 window.configure(bg=gray)
-
+window.iconbitmap("icons//favicon.ico")
 # ---------------------------icons----------------------
 next_icon = Image.open("icons/next.png")
 next_icon = next_icon.resize((30, 30), Image.LANCZOS)
@@ -51,7 +51,7 @@ def pause_music():
 def resume_music():
     pg.mixer.music.unpause()
 
-def play_pause():
+def resume_pause():
     if pg.mixer.music.get_busy():
         pause_music()
     else:
@@ -59,15 +59,14 @@ def play_pause():
 
 def next_song():
     if music:
-        play_music((current_index[0] + 1) % len(music))
+        play_music((current_index[0] + 1)%len(music))
 
 def prev_song():
     if music:
-        play_music((current_index[0] - 1) % len(music))
+        play_music((current_index[0] - 1)%len(music))
 
 def add_music():
-    directory = filedialog.askdirectory(
-        title="Select MP3 Files",)
+    directory = filedialog.askdirectory(initialdir=".", title="Select MP3 Directory")
     files = [os.path.join(directory, f) for f in os.listdir(directory) if f.lower().endswith(".mp3")]
   
     for full_path in files:
@@ -76,6 +75,12 @@ def add_music():
     if files:
         show()
         music_screen()
+
+def auto_load():
+    if os.path.exists("music"):
+        for filename in os.listdir("music"):
+            if filename.endswith(".mp3"):
+                music.append(os.path.join("music", filename))
 
 def show():
     music_listbox.delete(0, tk.END)
@@ -103,11 +108,11 @@ def on_listbox_select(event):
     if not selection:
         return
     choice = listbox.get(selection[0])
-    if choice == "  music":
+    if choice == " > Music":
         music_screen()
-    elif choice == "  settings":
+    elif choice == " > Settings":
         setting_screen()
-    elif choice == "  files":
+    elif choice == " > Files":
         add_music()
 
 def on_music_select(event):
@@ -122,13 +127,16 @@ main_frame = tk.Frame(window, width=300, height=200, bg=pink,
 main_frame.place(relx=0.05, rely=0.1)
 main_frame.pack_propagate(False)
 
+label_main = tk.Label(main_frame, text="iPod", bg=pink, fg=black, font=("Ivy 10", 14, "bold"))
+label_main.pack(pady=(5, 3))
+
 listbox = tk.Listbox(main_frame, height=10, width=30, bg=pink, fg=black,
                      font=("Ivy 10", 13), bd=0, selectbackground="#e8a0c0", activestyle="none")
 
 listbox.pack(fill=tk.BOTH, expand=True)
-listbox.insert(tk.END, "  music")
-listbox.insert(tk.END, "  files")
-listbox.insert(tk.END, "  settings")
+listbox.insert(tk.END, " > Music")
+listbox.insert(tk.END, " > Files")
+listbox.insert(tk.END, " > Settings")
 listbox.bind("<<ListboxSelect>>", on_listbox_select)
 
 
@@ -151,7 +159,7 @@ music_listbox = tk.Listbox(music_frame, height=7, width=30, bg=pink, fg=black,
                            activestyle="none")
 music_listbox.pack(fill=tk.BOTH, expand=True, padx=4)
 music_listbox.bind("<<ListboxSelect>>", on_music_select)
-
+auto_load()
 # -------------------------settings screen frame----------------------
 settings_frame = tk.Frame(window, width=300, height=200, bg=pink,
                           highlightbackground=black, highlightthickness=5)
@@ -165,6 +173,11 @@ settings_back_btn.pack(anchor="w", padx=5, pady=(3, 0))
 settings_title = tk.Label(settings_frame, text="Settings", bg=pink, fg=black,
                           font=("Ivy 10", 13, "bold"), anchor="w")
 settings_title.pack(fill=tk.X, padx=10, pady=(5, 0))
+
+coming_soon_label = tk.Label(settings_frame, text="Coming Soon...", bg=pink, fg="#888",
+                             font=("Ivy 10", 11))
+coming_soon_label.pack( padx=10, pady=20)
+
 
 tk.Label(settings_frame, text="────────────────────", bg=pink, fg="#cca0b8",
          font=("Ivy 10", 9)).pack(fill=tk.X, padx=10)
@@ -180,17 +193,7 @@ canvas.create_oval(50, 50, 240, 240, fill=white, outline="#BBBEC3", width=1)
 # Inner circle
 inner_circle = canvas.create_oval(105, 105, 185, 185, fill=gray, outline=gray, width=1)
 
-def on_hover_enter(event):
-    canvas.itemconfig(inner_circle, fill="#d3dce8")
-    canvas.config(cursor="hand2")
-
-def on_hover_leave(event):
-    canvas.itemconfig(inner_circle, fill=gray)
-    canvas.config(cursor="")
-
-canvas.tag_bind(inner_circle, "<Button-1>", lambda e: play_pause())
-canvas.tag_bind(inner_circle, "<Enter>", on_hover_enter)
-canvas.tag_bind(inner_circle, "<Leave>", on_hover_leave)
+canvas.tag_bind(inner_circle, "<Button-1>", lambda e: resume_pause())
 
 # menu button
 menu_button = tk.Button(canvas, text="MENU", fg="#BBBEC3", font=("Ivy 10", 15),
