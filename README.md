@@ -1,8 +1,5 @@
 <h2 align="center"><u>Ipod-mp3-player</u></h2>
 
-![Generate beautiful Repository Readme](images/banner.png)
-<h4 align="center"> Generate beautiful Repository Readme </h4>
-
 <p align="center">
 <br>
     <img src="https://img.shields.io/badge/Author-NAZiha-magenta?style=flat-square">
