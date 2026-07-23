@@ -6,7 +6,6 @@
     <img src="https://img.shields.io/badge/Author-NAZiha-magenta?style=flat-square">
     <img src="https://img.shields.io/badge/Written%20In-Python-blue?style=flat-square">
 </p>
-<img width="449" height="212" alt="Capture d’écran 2026-07-23 153506" src="https://github.com/user-attachments/assets/ec6baeb2-6cba-48bc-9e93-f1ce7b6f6548" />
 
 # 🎧 iPod Music Player
 
